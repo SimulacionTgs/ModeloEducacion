@@ -1,9 +1,7 @@
 var App = (function (app) {
 
     var load = function () {
-      var table = $('#tblVariables').DataTable({
-        "scrollX": true
-      });
+      var table = $('#tblVariables').DataTable();
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
       $( "#tabs" ).tabs();

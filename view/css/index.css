@@ -1,3 +1,8 @@
 .clsTable{
   overflow-x: scroll;
 }
+
+.card {
+  height: 560px;
+  overflow-y: auto;
+}
