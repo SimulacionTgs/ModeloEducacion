@@ -20,17 +20,9 @@
               <div id="tabs-1">
                 <form action="">
                   <div class="form-group row">
-                    <label for="sltEscala">Escala</label>
-                    <select class="form-control" id="sltEscala" name="sltEscala">
-                      <option>Meses</option>
-                      <option>Años</option>
-                    </select>
+                    <label for="inpTiempo">Tiempo años</label>
+                    <input type="number" class="form-control clsCambio" id="inpTiempos" min="1" max="100" placeholder="Cantidad de tiempo">
                   </div>
-                  <div class="form-group row">
-                    <label for="inpTiempo">Tiempo</label>
-                    <input type="number" class="form-control" id="inpTiempo" min="1" max="100" placeholder="Cantidad de tiempo">
-                  </div>
-                  <input type="reset" class="btn btn-warning pull-right" value="Limpiar">
                 </form>
                 <div id="chart_div"></div>
               </div>
@@ -60,18 +52,19 @@
           <h3 class="card-header">Variables</h3>
           <div class="card-block">
             <div class="container">
-              <form>
+              <form id="frmVariables">
+                <input type="hidden" name="inpTiempo" id="inpTiempo" value="0">
                 <div class="form-group">
                   <label for="inpCantPersonas">Cantidad de personas</label>
-                  <input type="number" class="form-control" name="inpCantPersonas" id="inpCantPersonas" min="1" placeholder="Cantidad de personas">
+                  <input type="number" class="form-control clsCambio" name="inpCantPersonas" id="inpCantPersonas" min="1" placeholder="Cantidad de personas">
                 </div>
                 <div class="form-group">
                   <label for="inpCantPersonasAllegadas">Cantidad de personas allegadas</label>
-                  <input type="number" class="form-control" name="inpCantPersonasAllegadas" id="inpCantPersonasAllegadas" min="1" placeholder="Cantidad de personas allegadas">
+                  <input type="number" class="form-control clsCambio" name="inpCantPersonasAllegadas" id="inpCantPersonasAllegadas" min="1" placeholder="Cantidad de personas allegadas">
                 </div>
                 <div class="form-group">
                   <label for="sltEstatusSocioeconomico">Estatus socioeconomico</label>
-                  <select class="form-control form-control-sm" id="sltEstatusSocioeconomico" name="sltEstatusSocioeconomico">
+                  <select class="form-control form-control-sm clsCambio" id="sltEstatusSocioeconomico" name="sltEstatusSocioeconomico">
                     <?php for ($i = 1; $i < 7; $i++): ?>
                         <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
                     <?php endfor; ?>
@@ -79,7 +72,7 @@
                 </div>
                 <div class="form-group">
                   <label for="sltHabilidades">Habilidades</label>
-                  <select class="form-control form-control-sm" id="sltHabilidades" name="sltHabilidades">
+                  <select class="form-control form-control-sm clsCambio" id="sltHabilidades" name="sltHabilidades">
                     <?php for ($i = 1; $i < 6; $i++): ?>
                         <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
                     <?php endfor; ?>
@@ -87,7 +80,7 @@
                 </div>
                 <div class="form-group">
                   <label for="sltActividadesDiarias">Nivel Actividades diarias</label>
-                  <select class="form-control form-control-sm" id="sltActividadesDiarias" name="sltActividadesDiarias">
+                  <select class="form-control form-control-sm clsCambio" id="sltActividadesDiarias" name="sltActividadesDiarias">
                     <?php for ($i = 1; $i < 6; $i++): ?>
                         <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
                     <?php endfor; ?>
@@ -95,19 +88,19 @@
                 </div>
                 <div class="form-group">
                   <label for="inpDiscapacitados">Discapacitados universitario</label>
-                  <input type="number" class="form-control" name="inpDiscapacitados" id="inpDiscapacitados" min="1" placeholder="Cantidad de discapacitados">
+                  <input type="number" class="form-control clsCambio" name="inpDiscapacitados" id="inpDiscapacitados" min="1" placeholder="Cantidad de discapacitados">
                 </div>
                 <div class="form-group">
                   <label for="inpGraduados">Universitarios graduados</label>
-                  <input type="number" class="form-control" name="inpGraduados" id="inpGraduados" min="1" placeholder="Universitarios graduados">
+                  <input type="number" class="form-control clsCambio" name="inpGraduados" id="inpGraduados" min="1" placeholder="Universitarios graduados">
                 </div>
                 <div class="form-group">
                   <label for="inpPersonal">Personal</label>
-                  <input type="number" class="form-control" name="inpPersonal" id="inpPersonal" min="1" placeholder="Cantidad de personal">
+                  <input type="number" class="form-control clsCambio" name="inpPersonal" id="inpPersonal" min="1" placeholder="Cantidad de personal">
                 </div>
                 <div class="form-group">
                   <label for="sltExperiencia">Experiencia</label>
-                  <select class="form-control form-control-sm" id="sltExperiencia" name="sltExperiencia">
+                  <select class="form-control form-control-sm clsCambio" id="sltExperiencia" name="sltExperiencia">
                     <?php for ($i = 1; $i < 6; $i++): ?>
                         <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
                     <?php endfor; ?>
@@ -115,7 +108,7 @@
                 </div>
                 <div class="form-group">
                   <label for="sltUniversidad">Universidad</label>
-                  <select class="form-control form-control-sm" id="sltUniversidad" name="sltUniversidad">
+                  <select class="form-control form-control-sm clsCambio" id="sltUniversidad" name="sltUniversidad">
                     <option value="alta">Alta</option>
                     <option value="media">Media</option>
                     <option value="baja">Baja</option>
@@ -123,7 +116,7 @@
                 </div>
                 <div class="form-group">
                   <label for="sltCarrera">Carrera</label>
-                  <select class="form-control form-control-sm" id="sltCarrera" name="sltCarrera">
+                  <select class="form-control form-control-sm clsCambio" id="sltCarrera" name="sltCarrera">
                     <option value="alta">Alta</option>
                     <option value="media">Media</option>
                     <option value="baja">Baja</option>
@@ -131,7 +124,7 @@
                 </div>
                 <div class="form-group">
                   <label for="sltTipoInstitucion">Tipo de institución</label>
-                  <select class="form-control form-control-sm" id="sltTipoInstitucion" name="sltTipoInstitucion">
+                  <select class="form-control form-control-sm clsCambio" id="sltTipoInstitucion" name="sltTipoInstitucion">
                     <option value="publico">Publico</option>
                     <option value="semipublico">SemiPublico</option>
                     <option value="privada">Privada</option>
@@ -139,33 +132,32 @@
                 </div>
                 <div class="form-group">
                   <label for="inpIndicativoSalud">Indicativo de salud</label>
-                  <input type="number" step="0.01" class="form-control" name="inpIndicativoSalud" id="inpIndicativoSalud" min="1" placeholder="Indicativo de salud">
+                  <input type="number" step="0.01" class="form-control clsCambio" name="inpIndicativoSalud" id="inpIndicativoSalud" min="1" placeholder="Indicativo de salud">
                 </div>
                 <div class="form-group">
                   <label for="inpNivelEducativoBasico">Nivel educativo basico</label>
-                  <input type="number" step="0.01" class="form-control" name="inpNivelEducativoBasico" id="inpNivelEducativoBasico" min="1" placeholder="Nivel educativo basico">
+                  <input type="number" step="0.01" class="form-control clsCambio" name="inpNivelEducativoBasico" id="inpNivelEducativoBasico" min="1" placeholder="Nivel educativo basico">
                 </div>
                 <div class="form-group">
                   <label for="inpNivelNecesidadCog">Nivel necesidad cognitiva</label>
-                  <input type="number" step="0.01" class="form-control" name="inpNivelNecesidadCog" id="inpNivelNecesidadCog" min="1" placeholder="Nivel necesidad cognitiva">
+                  <input type="number" step="0.01" class="form-control clsCambio" name="inpNivelNecesidadCog" id="inpNivelNecesidadCog" min="1" placeholder="Nivel necesidad cognitiva">
                 </div>
                 <div class="form-group">
                   <label for="inpNivelNecesidadMent">Nivel necesidad mental</label>
-                  <input type="number" step="0.01" class="form-control" name="inpNivelNecesidadMent" id="inpNivelNecesidadMent" min="1" placeholder="Nivel necesidad mental">
+                  <input type="number" step="0.01" class="form-control clsCambio" name="inpNivelNecesidadMent" id="inpNivelNecesidadMent" min="1" placeholder="Nivel necesidad mental">
                 </div>
                 <div class="form-group">
                   <label for="inpNivelNecesidadFis">Nivel necesidad fisica</label>
-                  <input type="number" step="0.01" class="form-control" name="inpNivelNecesidadFis" id="inpNivelNecesidadFis" min="1" placeholder="Nivel necesidad fisica">
+                  <input type="number" step="0.01" class="form-control clsCambio" name="inpNivelNecesidadFis" id="inpNivelNecesidadFis" min="1" placeholder="Nivel necesidad fisica">
                 </div>
                 <div class="form-group">
                   <label for="inpNivelNecesidadMat">Nivel necesidad material</label>
-                  <input type="number" step="0.01" class="form-control" name="inpNivelNecesidadMat" id="inpNivelNecesidadMat" min="1" placeholder="Nivel necesidad material">
+                  <input type="number" step="0.01" class="form-control clsCambio" name="inpNivelNecesidadMat" id="inpNivelNecesidadMat" min="1" placeholder="Nivel necesidad material">
                 </div>
                 <div class="form-group">
                   <label for="inpEficienciaMetodos">Eficiencia en los metodos</label>
-                  <input type="number" step="0.01" class="form-control" name="inpEficienciaMetodos" id="inpEficienciaMetodos" min="1" placeholder="Eficiencia en los metodos">
+                  <input type="number" step="0.01" class="form-control clsCambio" name="inpEficienciaMetodos" id="inpEficienciaMetodos" min="1" placeholder="Eficiencia en los metodos">
                 </div>
-                <button type="submit" class="btn btn-primary">Calcular</button>
                 <input type="reset" class="btn btn-warning" value="Limpiar">
               </form>
             </div>

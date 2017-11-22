@@ -5,27 +5,41 @@ var App = (function (app) {
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
       $( "#tabs" ).tabs();
+      $('.clsCambio').change(drawChart);
     };
 
-    function drawChart() {
-      var data = google.visualization.arrayToDataTable([
-        ['Year', 'Sales', 'Expenses'],
-        ['2004',  1000,      400],
-        ['2005',  1170,      460],
-        ['2006',  660,       1120],
-        ['2007',  1030,      540]
-      ]);
-
-      var options = {
-        title: 'Company Performance',
-        curveType: 'function',
-        legend: { position: 'bottom' }
-      };
-
-      var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-
-      chart.draw(data, options);
-    }
+    var drawChart = function () {
+      $('#inpTiempo').val($('#inpTiempos').val());
+        $.ajax({
+          url : 'controller/Simulacion.php',
+          data : $('#frmVariables').serialize(),
+          type : 'POST',
+          dataType: "json",
+          success : function(json) {
+            var aGrafica = [];
+            aGrafica.push(['Años', 'valores']);
+            var iAnos = 0;
+            if($('#inpTiempo').val() < 1) {
+              iAnos = 3;
+            } else{
+              iAnos = $('#inpTiempo').val();
+            }
+            for (var i = 0; i < iAnos; i++) {
+              aGrafica.push([json[i][0], json[i][1]]);
+            }
+            var data = google.visualization.arrayToDataTable(aGrafica);
+            var options = {
+              title: 'Simulacion ' + iAnos + ' años' ,
+              legend: { position: 'bottom' }
+            };
+            var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+          },
+          error : function(xhr, status) {
+              alert('Disculpe, existió un problema');
+          }
+      });
+    };
 
     return {
         load: load
