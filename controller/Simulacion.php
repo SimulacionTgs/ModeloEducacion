@@ -271,9 +271,17 @@ class Simulacion
         $i++;
       }
     }
+    $aTabla = array();
     $aFinalResult = array();
     for ($i=0; $i < $this->getITiempo(); $i++) {
       $aResul = array();
+      $fPromedioCognitiva = 0;
+      $fPromedioMental = 0;
+      $fPromedioFisica = 0;
+      $fPromedioMaterial = 0;
+      $fPromedioTiempoMetodo = 0;
+      $fPromedioAceptacion = 0;
+      $fPromedioEficiencia = 0;
       for ($j=0; $j < $aTiempoXPersona[$i]; $j++) {
         $fResult = 0;
         switch (rand(1, 3)) {
@@ -338,7 +346,21 @@ class Simulacion
         $iNivelGeneralAcceso = ($iIndicativoSalud + $iNivelEducativoBasico + $iNivelNecesidadDesarrollo + $this->iCantDiscap + $this->iCantGraduados) * $iEficienciaMetodos /(($iNivelNecesidadCog +$iNivelNecesidadMent+$iNivelNecesidadFis)*$this->iNivelNecesidadMat);
         $fResult = $iNivelGeneralAcceso * ($i+1) * (rand(0, 10) / 10);
         array_push($aResul, $fResult);
+        $fPromedioCognitiva += $iNivelNecesidadCog;
+        $fPromedioMental += $iNivelNecesidadMent;
+        $fPromedioFisica += $iNivelNecesidadFis;
+        $fPromedioMaterial += $this->iNivelNecesidadMat;
+        $fPromedioTiempoMetodo += $this->iNivelNecesidadMat;
+        $fPromedioAceptacion += $iIndicativoAceptacion;
+        $fPromedioEficiencia += $iEficienciaMetodos;
       }
+      array_push($aTabla, array("tiempo" => $i+1, "escala" => "años", "variable" => "Nivel necesidad cognitiva", "valor" => ($fPromedioCognitiva/($i+1))/100));
+      array_push($aTabla, array("tiempo" => $i+1, "escala" => "años", "variable" => "Nivel necesidad mental", "valor" => ($fPromedioMental/($i+1))/100));
+      array_push($aTabla, array("tiempo" => $i+1, "escala" => "años", "variable" => "Nivel necesidad fisica", "valor" => ($fPromedioFisica/($i+1))/100));
+      array_push($aTabla, array("tiempo" => $i+1, "escala" => "años", "variable" => "Nivel necesidad material", "valor" => ($fPromedioMaterial/($i+1))/100));
+      array_push($aTabla, array("tiempo" => $i+1, "escala" => "años", "variable" => "Tiempo empleado en el metodo", "valor" => ($fPromedioTiempoMetodo/($i+1))/100));
+      array_push($aTabla, array("tiempo" => $i+1, "escala" => "años", "variable" => "Indicativo aceptacion social", "valor" => ($fPromedioAceptacion/($i+1))/100));
+      array_push($aTabla, array("tiempo" => $i+1, "escala" => "años", "variable" => "Eficiencia en los metodos", "valor" => ($fPromedioEficiencia/($i+1))/100));
       array_push($aFinalResult, array_sum($aResul)/$aTiempoXPersona[$i] * ($i+1));
     }
     $aAjustado = array();
@@ -352,7 +374,7 @@ class Simulacion
       $dNewFecha = $nuevafecha;
       $aAjustado[] = array($dNewFecha, $aFinalResult[$i]);
     }
-    return json_encode($aAjustado);
+    return json_encode(array("grafica" => $aAjustado, "tabla" => $aTabla));
   }
 
 }

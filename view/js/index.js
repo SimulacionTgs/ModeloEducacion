@@ -1,7 +1,18 @@
 var App = (function (app) {
 
     var load = function () {
-      var table = $('#tblVariables').DataTable();
+      var table = $('#tblVariables').DataTable({
+          "destroy": true,
+          "columns": [
+              {"data": "tiempo"},
+              {"data": "escala"},
+              {"data": "variable"},
+              {"data": "valor"}
+          ],
+          language: {
+              "url": "//cdn.datatables.net/plug-ins/1.10.9/i18n/Spanish.json"
+          }
+      });
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
       $( "#tabs" ).tabs();
@@ -24,8 +35,9 @@ var App = (function (app) {
             } else{
               iAnos = $('#inpTiempo').val();
             }
+            $('#tblVariables').DataTable().rows.add(json.tabla).draw();
             for (var i = 0; i < iAnos; i++) {
-              aGrafica.push([json[i][0], json[i][1]]);
+              aGrafica.push([json.grafica[i][0], json.grafica[i][1]]);
             }
             var data = google.visualization.arrayToDataTable(aGrafica);
             var options = {

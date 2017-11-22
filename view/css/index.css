@@ -6,3 +6,7 @@
   height: 560px;
   overflow-y: auto;
 }
+
+.clsSensible{
+  color: red;
+}

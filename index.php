@@ -55,7 +55,7 @@
               <form id="frmVariables">
                 <input type="hidden" name="inpTiempo" id="inpTiempo" value="0">
                 <div class="form-group">
-                  <label for="inpCantPersonas">Cantidad de personas</label>
+                  <label for="inpCantPersonas" class="clsSensible">Cantidad de personas</label>
                   <input type="number" class="form-control clsCambio" name="inpCantPersonas" id="inpCantPersonas" min="1" placeholder="Cantidad de personas">
                 </div>
                 <div class="form-group">
@@ -139,23 +139,23 @@
                   <input type="number" step="0.01" class="form-control clsCambio" name="inpNivelEducativoBasico" id="inpNivelEducativoBasico" min="1" placeholder="Nivel educativo basico">
                 </div>
                 <div class="form-group">
-                  <label for="inpNivelNecesidadCog">Nivel necesidad cognitiva</label>
+                  <label for="inpNivelNecesidadCog" class="clsSensible">Nivel necesidad cognitiva</label>
                   <input type="number" step="0.01" class="form-control clsCambio" name="inpNivelNecesidadCog" id="inpNivelNecesidadCog" min="1" placeholder="Nivel necesidad cognitiva">
                 </div>
                 <div class="form-group">
-                  <label for="inpNivelNecesidadMent">Nivel necesidad mental</label>
+                  <label for="inpNivelNecesidadMent" class="clsSensible">Nivel necesidad mental</label>
                   <input type="number" step="0.01" class="form-control clsCambio" name="inpNivelNecesidadMent" id="inpNivelNecesidadMent" min="1" placeholder="Nivel necesidad mental">
                 </div>
                 <div class="form-group">
-                  <label for="inpNivelNecesidadFis">Nivel necesidad fisica</label>
+                  <label for="inpNivelNecesidadFis" class="clsSensible">Nivel necesidad fisica</label>
                   <input type="number" step="0.01" class="form-control clsCambio" name="inpNivelNecesidadFis" id="inpNivelNecesidadFis" min="1" placeholder="Nivel necesidad fisica">
                 </div>
                 <div class="form-group">
-                  <label for="inpNivelNecesidadMat">Nivel necesidad material</label>
+                  <label for="inpNivelNecesidadMat" class="clsSensible">Nivel necesidad material</label>
                   <input type="number" step="0.01" class="form-control clsCambio" name="inpNivelNecesidadMat" id="inpNivelNecesidadMat" min="1" placeholder="Nivel necesidad material">
                 </div>
                 <div class="form-group">
-                  <label for="inpEficienciaMetodos">Eficiencia en los metodos</label>
+                  <label for="inpEficienciaMetodos" class="clsSensible">Eficiencia en los metodos</label>
                   <input type="number" step="0.01" class="form-control clsCambio" name="inpEficienciaMetodos" id="inpEficienciaMetodos" min="1" placeholder="Eficiencia en los metodos">
                 </div>
                 <input type="reset" class="btn btn-warning" value="Limpiar">
