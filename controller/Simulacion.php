@@ -1,4 +1,5 @@
-<?php
+﻿<?php
+set_time_limit(0);
 /**
  * Clase que representa la simulacion
  */
@@ -246,7 +247,7 @@ class Simulacion
   public function getProceso() {
     $aTiempoXPersona = array();
     if($this->getITiempo() >= $this->getICantPers()) {
-      for ($i=0; $i < $this->getITiempo()-1; $i++) {
+      for ($i=0; $i < $this->getITiempo(); $i++) {
         array_push($aTiempoXPersona, 1);
       }
     } else{
@@ -273,6 +274,42 @@ class Simulacion
     }
     $aTabla = array();
     $aFinalResult = array();
+    $iUniversidad = 0;
+    switch ($this->sUniversidad) {
+      case 'alta':
+        $iUniversidad = 5;
+        break;
+      case 'media':
+        $iUniversidad = 3;
+        break;
+      case 'baja':
+        $iUniversidad = 1;
+        break;
+    }
+    $iCarrera = 0;
+    switch ($this->sCarrera) {
+      case 'alta':
+        $iCarrera = 5;
+        break;
+      case 'media':
+        $iCarrera = 3;
+        break;
+      case 'baja':
+        $iCarrera = 1;
+        break;
+    }
+    $iTipoInstitucion = 0;
+    switch ($this->sTipoInstitucion) {
+      case 'privada':
+        $iTipoInstitucion = 1;
+        break;
+      case 'semipublico':
+        $iTipoInstitucion = 3;
+        break;
+      case 'publico':
+        $iTipoInstitucion = 5;
+        break;
+    }
     for ($i=0; $i < $this->getITiempo(); $i++) {
       $aResul = array();
       $fPromedioCognitiva = 0;
@@ -293,42 +330,6 @@ class Simulacion
             break;
           case '3':
             $iTipoDiscapacidad = 3;
-            break;
-        }
-        $iUniversidad = 0;
-        switch ($this->sUniversidad) {
-          case 'alta':
-            $iUniversidad = 5;
-            break;
-          case 'media':
-            $iUniversidad = 3;
-            break;
-          case 'baja':
-            $iUniversidad = 1;
-            break;
-        }
-        $iCarrera = 0;
-        switch ($this->sCarrera) {
-          case 'alta':
-            $iCarrera = 5;
-            break;
-          case 'media':
-            $iCarrera = 3;
-            break;
-          case 'baja':
-            $iCarrera = 1;
-            break;
-        }
-        $iTipoInstitucion = 0;
-        switch ($this->sTipoInstitucion) {
-          case 'privada':
-            $iTipoInstitucion = 1;
-            break;
-          case 'semipublico':
-            $iTipoInstitucion = 3;
-            break;
-          case 'publico':
-            $iTipoInstitucion = 5;
             break;
         }
         $iNivelInfraestructura = ($iUniversidad + $iCarrera) / $iTipoInstitucion;
@@ -365,6 +366,12 @@ class Simulacion
     }
     $aAjustado = array();
     $fecha = date('Y-m-j');
+    $iMayor = 0;
+    for ($i=0; $i < count($aFinalResult); $i++) {
+      if($iMayor < $aFinalResult[$i]) {
+        $iMayor = $aFinalResult[$i];
+      }
+    }
     for ($i=0; $i < count($aFinalResult); $i++) {
       if($i == 0) {
         $dNewFecha = $fecha;
@@ -372,7 +379,8 @@ class Simulacion
       $nuevafecha = strtotime ( '+1 year' , strtotime ( $dNewFecha ) ) ;
       $nuevafecha = date ( 'Y-m-j' , $nuevafecha );
       $dNewFecha = $nuevafecha;
-      $aAjustado[] = array($dNewFecha, $aFinalResult[$i]);
+      $aAjustado[] = array($dNewFecha, ($aFinalResult[$i] * 100) / $iMayor);
+
     }
     return json_encode(array("grafica" => $aAjustado, "tabla" => $aTabla));
   }
